@@ -143,8 +143,10 @@
     transition:opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1);
   }
   .js-reveal .reveal.is-visible{opacity:1;transform:translateY(0);}
-  .js-reveal .grid .reveal:nth-child(2){transition-delay:90ms;}
-  .js-reveal .grid .reveal:nth-child(3){transition-delay:180ms;}
+  .js-reveal .grid .reveal{transform:translateY(28px) scale(.94);}
+  .js-reveal .grid .reveal.is-visible{transform:translateY(0) scale(1);}
+  .js-reveal .grid .reveal:nth-child(2){transition-delay:110ms;}
+  .js-reveal .grid .reveal:nth-child(3){transition-delay:220ms;}
   .js-reveal .trust-row .reveal:nth-child(2){transition-delay:80ms;}
   .js-reveal .trust-row .reveal:nth-child(3){transition-delay:160ms;}
   .js-reveal .trust-row .reveal:nth-child(4){transition-delay:240ms;}
@@ -168,6 +170,12 @@
     border-radius:18px;
     padding:26px 22px;
     box-shadow:var(--shadow);
+    transition:transform .35s cubic-bezier(.16,.84,.44,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 34px -18px rgba(27,67,50,0.28);
+    border-color:rgba(46,125,79,0.35);
   }
   .card .icon{
     width:42px;height:42px;border-radius:12px;
@@ -176,8 +184,26 @@
     color:var(--accent-deep);
     margin-bottom:16px;
     font-size:19px;
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1), background .35s ease;
+  }
+  .card:hover .icon{
+    transform:scale(1.14) rotate(-8deg);
+    background:rgba(46,125,79,0.16);
   }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .card .icon{ color:var(--accent); } }
+  .js-reveal .card.is-visible .icon{
+    animation:iconPop .55s cubic-bezier(.34,1.56,.64,1) both;
+    animation-delay:.2s;
+  }
+  @keyframes iconPop{
+    0%{transform:scale(0);}
+    70%{transform:scale(1.18);}
+    100%{transform:scale(1);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .card, .card .icon{transition:none;}
+    .js-reveal .card.is-visible .icon{animation:none;}
+  }
   .card h3{font-size:16px;font-weight:700;margin:0 0 8px;}
   .card p{font-size:14.5px;line-height:1.58;color:var(--ink-muted);margin:0;}
 
@@ -330,7 +356,7 @@
     <h1 class="headline">Find your dog's<br><em>perfect field</em></h1>
     <p class="lede">
       WONDA connects dog owners across the UK with private, securely fenced fields —
-      book by the hour, no other dogs, no surprises. Just your dog, off the lead.
+      book by the hour, no surprises. Just your dog, off the lead.
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:wondadogapp@gmail.com?subject=Notify%20me%20when%20WONDA%20launches">Get notified at launch</a>
