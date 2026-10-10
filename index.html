@@ -5,7 +5,7 @@
 <title>WONDA — Find your dog's perfect field</title>
 <link rel="canonical" href="https://wonda.dog/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="WONDA connects dog owners with private, securely fenced fields they can book by the hour. Now taking field listings across Devon and Cornwall. WONDA APP LTD, Bideford, Devon.">
+<meta name="description" content="WONDA connects dog owners with private, securely fenced fields they can book by the hour. Now on Google Play, with field listings open across Devon and Cornwall. WONDA APP LTD, Bideford, Devon.">
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -423,12 +423,13 @@
     </p>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://wonda.expo.app/host/apply">List your field</a>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=dog.wonda.app">Get it on Google Play</a>
+      <a class="btn btn-ghost" href="https://wonda.expo.app/host/apply">List your field</a>
       <a class="btn btn-ghost" href="https://wonda.expo.app">Open the web app</a>
     </div>
 
     <div class="app-notify">
-      <p>Prefer an app? WONDA for iOS and Android is on its way — leave your email and we'll tell you the moment it's on the App Store and Google Play.</p>
+      <p>On iPhone? WONDA for iOS is coming to the App Store — leave your email and we'll tell you the moment it lands.</p>
       <form class="notify-form" id="notifyForm" novalidate>
         <input
           type="email"
@@ -596,7 +597,7 @@
       .then(function(result){
         if (!result.ok) throw new Error(result.json.error || 'Something went wrong.');
         input.value = '';
-        showMsg("You're on the list — we'll email you the moment the app is on the App Store and Google Play.", 'success');
+        showMsg("You're on the list — we'll email you the moment WONDA is on the App Store.", 'success');
       })
       .catch(function(err){
         showMsg(err.message || 'Something went wrong. Please try again.', 'error');
