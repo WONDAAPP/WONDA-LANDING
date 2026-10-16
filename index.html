@@ -166,6 +166,20 @@
   .btn-gold{background:var(--gold);color:#3A2E05;}
   .btn:disabled{opacity:.6;cursor:default;}
 
+  .hero-peek{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:20px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:13.5px;font-weight:700;
+    color:var(--accent);
+    text-decoration:none;
+  }
+  .hero-peek:hover{color:var(--accent-deep);}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hero-peek:hover{ color:#A8DDBD; } }
+  .hero-peek span{transition:transform .25s ease;}
+  .hero-peek:hover span{transform:translateY(3px);}
+  html{scroll-behavior:smooth;}
+
   .notify-form{
     display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
     max-width:440px;margin:0 auto;
@@ -515,6 +529,7 @@
       <a class="btn btn-ghost" href="https://wonda.expo.app/host/apply">List your field</a>
       <a class="btn btn-ghost" href="https://wonda.expo.app">Open the web app</a>
     </div>
+    <a class="hero-peek" href="#app">See it in action <span aria-hidden="true">&darr;</span></a>
 
     <div class="app-notify">
       <p>On iPhone? WONDA for iOS is coming to the App Store — leave your email and we'll tell you the moment it lands.</p>
