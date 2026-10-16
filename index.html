@@ -297,6 +297,50 @@
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .trust-item .num{ color:var(--accent); } }
   .trust-item .lbl{font-size:13px;color:var(--ink-muted);margin-top:4px;}
 
+  /* ---- App showcase ---- */
+  section.appshow{padding-block:64px 10px;}
+  .appshow-head{text-align:center;max-width:56ch;margin:0 auto 38px;}
+  .appshow-eyebrow{
+    display:inline-block;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:11.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .appshow h2{
+    font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-0.015em;
+    margin:0 0 10px;text-wrap:balance;
+  }
+  .appshow-head p{font-size:16px;line-height:1.6;color:var(--ink-muted);margin:0;}
+  .phone-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:28px;justify-items:center;align-items:start;
+  }
+  @media (max-width:760px){ .phone-grid{grid-template-columns:1fr;gap:42px;} }
+  .phone{max-width:272px;width:100%;text-align:center;}
+  .phone-frame{
+    position:relative;
+    border-radius:34px;
+    padding:9px;
+    background:linear-gradient(165deg,#ACAD61,var(--accent) 48%,#1B4332);
+    box-shadow:0 26px 48px -22px rgba(27,67,50,0.5);
+  }
+  .phone-frame video{
+    width:100%;height:auto;display:block;
+    border-radius:26px;
+    background:#122019;
+  }
+  .phone h3{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:15.5px;font-weight:700;margin:16px 0 5px;
+  }
+  .phone p{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-size:14px;line-height:1.55;color:var(--ink-muted);margin:0;
+  }
+  .js-reveal .phone-grid .reveal:nth-child(2){transition-delay:110ms;}
+  .js-reveal .phone-grid .reveal:nth-child(3){transition-delay:220ms;}
+
   /* ---- Host section ---- */
   section.host{padding-block:70px;}
   .host-card{
@@ -529,6 +573,45 @@
   </div>
 </section>
 
+<section class="appshow" id="app">
+  <div class="wrap">
+    <div class="appshow-head reveal">
+      <span class="appshow-eyebrow">A look inside</span>
+      <h2>See WONDA in action</h2>
+      <p>Real screens from the app — find a field near you, book it in seconds, or list your own.</p>
+    </div>
+    <div class="phone-grid">
+      <div class="phone reveal">
+        <div class="phone-frame">
+          <video src="assets/app/find.mp4" poster="assets/app/find.jpg" width="640" height="1308"
+                 autoplay muted loop playsinline preload="metadata"
+                 aria-label="WONDA app showing a map of secure dog fields across the UK"></video>
+        </div>
+        <h3>Find fields near you</h3>
+        <p>Every field pinned on the map, with safety ratings and prices up front.</p>
+      </div>
+      <div class="phone reveal">
+        <div class="phone-frame">
+          <video src="assets/app/book.mp4" poster="assets/app/book.jpg" width="640" height="1308"
+                 autoplay muted loop playsinline preload="metadata"
+                 aria-label="WONDA app booking flow: choosing a date, time slot and paying"></video>
+        </div>
+        <h3>Book in seconds</h3>
+        <p>Pick a date, choose a slot, pay securely — the field is all yours.</p>
+      </div>
+      <div class="phone reveal">
+        <div class="phone-frame">
+          <video src="assets/app/host.mp4" poster="assets/app/host.jpg" width="640" height="1308"
+                 autoplay muted loop playsinline preload="metadata"
+                 aria-label="WONDA app listing form for field owners: hours, fencing and safety details"></video>
+        </div>
+        <h3>List your field &amp; earn</h3>
+        <p>Set your hours, fencing details and price — free to list, always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="host" id="host">
   <div class="wrap">
     <div class="host-card reveal">
@@ -616,6 +699,28 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   els.forEach(function(el){ io.observe(el); });
+})();
+
+(function(){
+  var vids = document.querySelectorAll('.phone-frame video');
+  if (!vids.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){
+    vids.forEach(function(v){ v.removeAttribute('autoplay'); v.pause(); v.setAttribute('controls',''); });
+    return;
+  }
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var v = entry.target;
+      if (entry.isIntersecting){
+        var p = v.play(); if (p && p.catch) p.catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+  vids.forEach(function(v){ io.observe(v); });
 })();
 
 (function(){
