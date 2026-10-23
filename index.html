@@ -70,6 +70,104 @@
 
   .wrap{max-width:1040px;margin-inline:auto;padding-inline:24px;}
 
+
+  /* ---- Rate banner (top of every page) ---- */
+  .rate-banner{
+    display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 14px;
+    padding:11px 18px;
+    background:var(--accent-deep);
+    color:#F7F5F0;
+    text-decoration:none;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    font-size:13.5px;line-height:1.4;
+    text-align:center;
+  }
+  .rate-banner:hover .rate-banner-cta{text-decoration:underline;}
+  .rate-banner-badge{
+    font-size:10.5px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;
+    color:#3A2E05;background:var(--gold);
+    padding:3px 9px;border-radius:999px;
+  }
+  .rate-banner-text b{color:var(--gold);font-weight:800;}
+  .rate-banner-spots{
+    font-weight:700;
+    background:rgba(247,245,240,0.12);border:1px solid rgba(247,245,240,0.22);
+    padding:3px 10px;border-radius:999px;
+  }
+  .rate-banner-cta{font-weight:800;color:var(--gold);white-space:nowrap;}
+  @media (max-width:640px){
+    .rate-banner{font-size:12.5px;padding:10px 14px;}
+    .rate-banner-badge{display:none;}
+  }
+
+  /* ---- Rate pop-up ---- */
+  .rate-pop-backdrop{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(17,28,22,0.6);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    opacity:0;transition:opacity .25s ease;
+  }
+  .rate-pop-backdrop.is-open{opacity:1;}
+  .rate-pop{
+    position:relative;
+    width:100%;max-width:440px;
+    background:var(--surface);
+    color:var(--ink);
+    border-radius:24px;
+    padding:36px 32px 30px;
+    isolation:isolate;
+    box-shadow:0 30px 80px rgba(0,0,0,0.35);
+    text-align:center;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    transform:translateY(14px) scale(.98);
+    transition:transform .25s ease;
+  }
+  .rate-pop-backdrop.is-open .rate-pop{transform:none;}
+  .rate-pop-close{
+    position:absolute;top:12px;right:12px;
+    width:34px;height:34px;border-radius:50%;
+    border:0;background:transparent;color:var(--ink-muted);
+    font-size:22px;line-height:1;cursor:pointer;
+  }
+  .rate-pop-close:hover{background:var(--border-soft);color:var(--ink);}
+  .rate-pop-eyebrow{
+    display:inline-block;
+    font-size:11px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;
+    color:#3A2E05;background:var(--gold);
+    padding:4px 11px;border-radius:999px;
+    margin-bottom:18px;
+  }
+  .rate-pop-figure{
+    font-size:84px;font-weight:800;line-height:0.95;letter-spacing:-0.04em;
+    color:var(--accent-deep);
+    margin:0 0 6px;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rate-pop-figure{ color:var(--gold); } }
+  .rate-pop-figure small{font-size:28px;letter-spacing:0;font-weight:700;vertical-align:top;margin-left:2px;}
+  .rate-pop h3{
+    font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-0.01em;
+    margin:0 0 10px;
+  }
+  .rate-pop p{
+    font-family:'Source Serif 4',serif;
+    font-size:14.5px;line-height:1.55;color:var(--ink-muted);
+    margin:0 0 20px;
+  }
+  .rate-pop-spots{
+    display:inline-block;
+    font-size:13px;font-weight:700;
+    background:var(--border-soft);
+    padding:6px 14px;border-radius:999px;
+    margin-bottom:22px;
+  }
+  .rate-pop .btn{width:100%;justify-content:center;}
+  .rate-pop-dismiss{
+    display:inline-block;margin-top:14px;
+    font-size:13px;font-weight:600;color:var(--ink-muted);
+    background:none;border:0;cursor:pointer;text-decoration:underline;
+  }
+
   /* ---- Nav ---- */
   nav.top{
     display:flex;align-items:center;justify-content:space-between;
@@ -570,6 +668,13 @@
 </head>
 <body>
 
+<a class="rate-banner" href="/list-your-field/#costs" aria-label="Founding Partner fields pay just 5% commission">
+  <span class="rate-banner-badge">Field owners</span>
+  <span class="rate-banner-text"><b>5% commission</b> for Founding Partner fields &mdash; the lowest rate of any dog field booking platform we&rsquo;ve compared.</span>
+  <span class="rate-banner-spots" data-founding-spots>Limited places</span>
+  <span class="rate-banner-cta">Claim yours &rarr;</span>
+</a>
+
 <div class="wrap">
   <nav class="top">
     <a class="brand" href="/"><img src="assets/logo-64.png" width="30" height="30" alt=""> WONDA</a>
@@ -730,6 +835,7 @@
       <div class="host-stats">
         <span class="host-stat"><b>£0</b> to list</span>
         <span class="host-stat">Keep <b>90%</b> of every booking</span>
+        <span class="host-stat">Founding Partners keep <b>95%</b></span>
         <span class="host-stat">Reviewed by <b>a real person</b>, not a bot</span>
         <span class="host-stat">Already elsewhere? <b>We switch you, free</b></span>
       </div>
@@ -810,7 +916,79 @@
   </div>
 </footer>
 
+<div class="rate-pop-backdrop" id="ratePop" hidden role="dialog" aria-modal="true" aria-labelledby="ratePopTitle">
+  <div class="rate-pop">
+    <button class="rate-pop-close" type="button" aria-label="Close" data-rate-pop-close>&times;</button>
+    <span class="rate-pop-eyebrow">For field owners</span>
+    <div class="rate-pop-figure">5<small>%</small></div>
+    <h3 id="ratePopTitle">The lowest commission of any dog field booking platform we&rsquo;ve compared.</h3>
+    <p>Founding Partner fields pay just 5% on each booking and keep 95% of their price. No listing fee, no monthly fee, and the dog owner covers the 50p booking fee.</p>
+    <span class="rate-pop-spots" data-founding-spots>Limited places</span>
+    <a class="btn btn-primary" href="https://wonda.expo.app/host/apply">Apply as a Founding Partner</a>
+    <button class="rate-pop-dismiss" type="button" data-rate-pop-close>No thanks, I&rsquo;m a dog owner</button>
+  </div>
+</div>
+
 <script>
+
+(function(){
+  // Live count of open Founding Partner places; the static text stays if
+  // the request fails, so the banner never shows a wrong number.
+  var els = document.querySelectorAll('[data-founding-spots]');
+  if (!els.length) return;
+  fetch('https://wonda.expo.app/api/founding-partners-remaining')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      if (!j || typeof j.remaining !== 'number') return;
+      var text = j.remaining === 0
+        ? 'All ' + j.total + ' places taken'
+        : j.remaining + ' of ' + j.total + ' places left';
+      els.forEach(function(el){ el.textContent = text; });
+    })
+    .catch(function(){});
+})();
+
+(function(){
+  // Founding Partner pop-up: once per visitor per 14 days, after they've
+  // either been here 6 seconds or scrolled a third of the way down —
+  // never the instant the page opens. Esc, backdrop or either button
+  // closes it. Skipped entirely if the visitor arrived on a #host /
+  // #switch link, since they're already heading for the owner section.
+  var KEY = 'wonda_rate_pop_seen_at';
+  var FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
+  var pop = document.getElementById('ratePop');
+  if (!pop) return;
+  if (/^#(host|switch)/.test(location.hash)) return;
+  var seen = null;
+  try { seen = Number(localStorage.getItem(KEY)) || null; } catch (e) {}
+  if (seen && Date.now() - seen < FOURTEEN_DAYS) return;
+
+  var opened = false;
+  function close(){
+    pop.classList.remove('is-open');
+    setTimeout(function(){ pop.hidden = true; }, 250);
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e){ if (e.key === 'Escape') close(); }
+  function open(){
+    if (opened) return;
+    opened = true;
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+    pop.hidden = false;
+    requestAnimationFrame(function(){ pop.classList.add('is-open'); });
+    document.addEventListener('keydown', onKey);
+    window.removeEventListener('scroll', onScroll);
+  }
+  function onScroll(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (max > 0 && window.scrollY / max > 0.33) open();
+  }
+  pop.querySelectorAll('[data-rate-pop-close]').forEach(function(b){ b.addEventListener('click', close); });
+  pop.addEventListener('click', function(e){ if (e.target === pop) close(); });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  setTimeout(open, 6000);
+})();
+
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;

@@ -29,6 +29,12 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it cost anything to list?", "acceptedAnswer": {"@type": "Answer", "text": "No. There's no sign-up fee and no monthly fee. WONDA only earns when you do, through a 10% commission on each booking."}}, {"@type": "Question", "name": "Who pays the 50p booking fee?", "acceptedAnswer": {"@type": "Answer", "text": "The dog owner, on top of your price. It never comes out of your share."}}, {"@type": "Question", "name": "Who pays the card processing fees?", "acceptedAnswer": {"@type": "Answer", "text": "WONDA does. Your 90% is calculated on your full price, before any card fees."}}, {"@type": "Question", "name": "How and when do I get paid?", "acceptedAnswer": {"@type": "Answer", "text": "Payouts run through Stripe, which also powers payments for many of the UK's biggest online businesses. You connect your bank account once, and Stripe sends your share automatically. There's no invoicing and nothing to chase."}}, {"@type": "Question", "name": "Can I change my prices, session lengths or hours later?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, any time, from your owner dashboard in the app. Changes apply to new bookings straight away."}}, {"@type": "Question", "name": "Do I need insurance?", "acceptedAnswer": {"@type": "Answer", "text": "WONDA doesn't provide insurance cover for fields. Most dog field owners hold public liability insurance, and we'd recommend talking to your insurer about hiring your field to the public if you haven't already."}}, {"@type": "Question", "name": "I already take bookings through another platform. Can I move to WONDA?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and we do the moving for you, free. Your listing, upcoming bookings, regular customers and any unused credit are all carried over. Existing bookings are honoured as already paid with no WONDA fee, your customers get one email from your field explaining the change, and your old platform keeps running until the handover is complete."}}, {"@type": "Question", "name": "I'm not in Devon or Cornwall. Can I still apply?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We're focusing on Devon and Cornwall first, but applications are open across the UK and we'll be in touch as we expand."}}]}</script>
 </head>
 <body>
+<a class="rate-banner" href="/list-your-field/#costs" aria-label="Founding Partner fields pay just 5% commission">
+  <span class="rate-banner-badge">Field owners</span>
+  <span class="rate-banner-text"><b>5% commission</b> for Founding Partner fields &mdash; the lowest rate of any dog field booking platform we&rsquo;ve compared.</span>
+  <span class="rate-banner-spots" data-founding-spots>Limited places</span>
+  <span class="rate-banner-cta">Claim yours &rarr;</span>
+</a>
 <div class="wrap">
   <nav class="top" aria-label="Main">
     <a class="brand" href="/"><img src="/assets/logo-64.png" width="30" height="30" alt=""> WONDA</a>
@@ -74,11 +80,23 @@
       </ul>
       <p>Everything can be changed later from your owner dashboard.</p>
 
-      <h2>What it costs</h2>
+      <h2 id="costs">What it costs</h2>
       <p>
         Listing is free. WONDA takes a 10% commission on each booking, so you keep 90% of your price. The dog
         owner pays a separate 50p booking fee on top, and WONDA covers the card processing fees.
       </p>
+      <div class="card">
+        <h3>Founding Partners pay 5%</h3>
+        <p>
+          Our first 25 fields join as <strong>Founding Partners</strong> and pay just <strong>5% commission</strong>, keeping
+          95% of their price. Against the other dog field booking platforms we&rsquo;ve compared, that is the lowest
+          rate on the market. Founding Partners also get a referral code: every field they bring to WONDA extends
+          their 5% rate by a month. <span data-founding-spots>Places are limited</span>.
+        </p>
+        <p>
+          <a class="btn btn-primary" href="https://wonda.expo.app/host/apply">Apply as a Founding Partner</a>
+        </p>
+      </div>
       <div class="card">
         <h3>Example: a 55-minute session at £12</h3>
         <dl class="meta">
@@ -174,5 +192,23 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  // Live count of open Founding Partner places; the static text stays if
+  // the request fails, so the banner never shows a wrong number.
+  var els = document.querySelectorAll('[data-founding-spots]');
+  if (!els.length) return;
+  fetch('https://wonda.expo.app/api/founding-partners-remaining')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      if (!j || typeof j.remaining !== 'number') return;
+      var text = j.remaining === 0
+        ? 'All ' + j.total + ' places taken'
+        : j.remaining + ' of ' + j.total + ' places left';
+      els.forEach(function(el){ el.textContent = text; });
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>
