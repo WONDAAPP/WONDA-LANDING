@@ -108,6 +108,9 @@
     padding:20px;
     opacity:0;transition:opacity .25s ease;
   }
+  /* The hidden attribute must win over display:flex above, or the invisible
+     backdrop sits over the whole page and blocks every click. */
+  .rate-pop-backdrop[hidden]{display:none;}
   .rate-pop-backdrop.is-open{opacity:1;}
   .rate-pop{
     position:relative;
