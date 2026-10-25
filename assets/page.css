@@ -7,6 +7,9 @@
   --ink-muted:#5B6B60;
   --accent:#2E7D4F;
   --accent-deep:#1B4332;
+  /* Dark-pine backgrounds; stays deep green in dark mode (see index.html). */
+  --deep:#1B4332;
+  --deep-edge:transparent;
   --gold:#E9C46A;
   --border:rgba(27,67,50,0.14);
   --border-soft:rgba(27,67,50,0.08);
@@ -21,6 +24,8 @@
     --ink-muted:#9AA79C;
     --accent:#7FCC9E;
     --accent-deep:#7FCC9E;
+    --deep:#1B4332;
+    --deep-edge:rgba(127,204,158,0.22);
     --border:rgba(255,255,255,0.10);
     --border-soft:rgba(255,255,255,0.06);
     --shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -181,17 +186,17 @@ h3{font-size:16.5px;font-weight:700;margin:24px 0 8px;}
 .faq .answer p:last-child{margin-bottom:0;}
 
 .cta-band{
-  background:#1B4332;color:#F7F5F0;
+  background:var(--deep);color:#F7F5F0;
+  border:1px solid var(--deep-edge);
   border-radius:22px;padding:clamp(24px,4vw,36px);
   margin:40px 0 8px;
 }
 .cta-band h2{margin:0 0 8px;color:#F7F5F0;}
-.cta-band p{color:rgba(247,245,240,.82);margin:0;}
+.cta-band p{color:rgba(247,245,240,.9);margin:0;}
 .cta-band .cta-row{margin-top:20px;}
 .cta-band .btn-primary{background:#E9C46A;color:#3A2E05;}
 .cta-band .btn-ghost{background:transparent;color:#F7F5F0;border-color:rgba(247,245,240,.3);}
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .cta-band{background:#1F3A2B;}
   :root:not([data-theme="light"]) .cta-band .btn-primary{background:#E9C46A;color:#3A2E05;}
 }
 
@@ -217,7 +222,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offse
   .rate-banner{
     display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 14px;
     padding:11px 18px;
-    background:var(--accent-deep);
+    background:var(--deep);
     color:#F7F5F0;
     text-decoration:none;
     font-family:'Plus Jakarta Sans',system-ui,sans-serif;
