@@ -416,7 +416,7 @@
       <ul>
         <li>To create and secure your account, and let you log back in</li>
         <li>To show you dog fields near your current location and sort them by distance</li>
-        <li>To process bookings and payments, and to send you a confirmation</li>
+        <li>To process bookings and payments, to send you a confirmation, and to send you a reminder shortly before your session (including the field's gate code where it has one)</li>
         <li>To process a refund if you cancel a paid booking</li>
         <li>To send account-related emails — sign-up confirmation and, where relevant, booking updates</li>
         <li>To keep the app secure and diagnose faults when something goes wrong</li>
@@ -441,7 +441,7 @@
         <tr><th>Provider</th><th>What they handle</th><th>Why</th></tr>
         <tr><td>Supabase</td><td>Account authentication and storage</td><td>Runs sign-up, login and account deletion</td></tr>
         <tr><td>Stripe</td><td>Payment processing and refunds</td><td>PCI-DSS certified; WONDA never sees full card numbers</td></tr>
-        <tr><td>Resend</td><td>Transactional email delivery</td><td>Sends account confirmation emails</td></tr>
+        <tr><td>Resend</td><td>Transactional email delivery</td><td>Sends confirmations, session reminders and, to field owners, booking notifications</td></tr>
       </table>
       <p>We may also disclose information where required by law, or to protect the rights, safety or property of WONDA, our users, or others.</p>
     </section>
