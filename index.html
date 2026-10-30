@@ -205,6 +205,63 @@
     margin:0 0 14px;
   }
 
+  /* ---- Hero phone ---- */
+  .hero-grid{display:grid;justify-items:center;row-gap:0;}
+  .hero-logo{display:none;}
+  @media (max-width:899px){ header.hero{padding-top:28px;} .hero-device{margin-top:34px;} }
+  .hero-device{position:relative;margin-top:44px;}
+  .hero-device::before{
+    content:"";position:absolute;inset:6% -22%;z-index:0;
+    background:radial-gradient(closest-side, rgba(233,196,106,0.38), rgba(46,125,79,0.12) 60%, transparent 100%);
+    filter:blur(6px);
+  }
+  .device{
+    position:relative;z-index:1;
+    width:clamp(232px,62vw,262px);
+    padding:10px;
+    border-radius:46px;
+    background:linear-gradient(155deg,#33403A 0%,#121714 55%,#0B0E0C 100%);
+    box-shadow:
+      inset 0 0 0 1.5px rgba(255,255,255,0.08),
+      0 44px 70px -34px rgba(27,67,50,0.65),
+      0 18px 30px -20px rgba(0,0,0,0.45);
+    transform:rotate(-2deg);
+    animation:deviceFloat 7s ease-in-out infinite;
+  }
+  .device::before,.device::after{content:"";position:absolute;width:3px;border-radius:2px;background:#202824;}
+  .device::before{right:-3px;top:27%;height:64px;}
+  .device::after{left:-3px;top:21%;height:38px;box-shadow:0 52px 0 #202824;}
+  @keyframes deviceFloat{
+    0%,100%{transform:rotate(-2deg) translateY(0);}
+    50%{transform:rotate(-2deg) translateY(-10px);}
+  }
+  @media (prefers-reduced-motion: reduce){ .device{animation:none;} }
+  .device-screen{position:relative;border-radius:37px;overflow:hidden;background:#F7F5F0;}
+  .device-status{
+    position:relative;height:36px;padding:0 20px 0 26px;
+    display:flex;align-items:center;justify-content:space-between;
+    color:#1F2A24;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;font-weight:700;
+  }
+  .device-island{position:absolute;left:50%;top:9px;width:31%;height:20px;transform:translateX(-50%);border-radius:999px;background:#0B0E0C;}
+  .device-icons{display:block;}
+  .device-screen img{display:block;width:100%;height:auto;}
+  .hero-grid .app-notify{width:100%;}
+  @media (min-width:900px){
+    header.hero{padding-block:52px 72px;}
+    header.hero .hero-copy, header.hero .app-notify{text-align:left;}
+    .hero-grid{
+      grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);
+      grid-template-areas:"copy device" "notify device";
+      column-gap:48px;justify-items:stretch;align-items:center;
+    }
+    .hero-copy{grid-area:copy;align-self:end;}
+    .hero-device{grid-area:device;justify-self:center;margin-top:0;}
+    .hero-grid .app-notify{grid-area:notify;align-self:start;margin-inline:0;max-width:460px;}
+    .hero-copy p.lede{margin-inline:0;}
+    .hero-copy .cta-row,.hero-grid .notify-form{justify-content:flex-start;margin-inline:0;}
+    .device{width:clamp(250px,24vw,286px);}
+  }
+
   /* ---- Hero ---- */
   header.hero{
     padding-block:44px 64px;
@@ -711,7 +768,8 @@
 </div>
 
 <header class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
     <img class="hero-logo" src="assets/logo-208.png" width="104" height="104" alt="WONDA logo">
     <span class="pill"><span class="dot"></span> The dog field app &middot; Android now, iPhone coming soon</span>
     <h1 class="headline">Find your dog's<br><em>perfect field</em></h1>
@@ -725,6 +783,20 @@
       <a class="btn btn-ghost" href="#host">Run a dog field?</a>
     </div>
     <a class="hero-peek" href="#app">See it in action <span aria-hidden="true">&darr;</span></a>
+    </div>
+
+    <div class="hero-device">
+      <div class="device">
+        <div class="device-screen">
+          <div class="device-status" aria-hidden="true">
+            <span class="device-time">9:41</span>
+            <span class="device-island"></span>
+            <svg class="device-icons" viewBox="0 0 54 12" width="54" height="12"><g fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="6" width="3" height="6" rx="1"/><rect x="9" y="3.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="1" width="3" height="11" rx="1"/><path d="M27 3.2a9.6 9.6 0 0 1 6.6 2.6l1.3-1.4A11.5 11.5 0 0 0 27 1.3a11.5 11.5 0 0 0-7.9 3.1l1.3 1.4A9.6 9.6 0 0 1 27 3.2Zm0 3.6a5.9 5.9 0 0 1 4 1.6l1.3-1.4a7.8 7.8 0 0 0-10.6 0L23 8.4a5.9 5.9 0 0 1 4-1.6Zm0 3.4a2.2 2.2 0 0 0-1.5.6L27 12.4l1.5-1.6a2.2 2.2 0 0 0-1.5-.6Z"/><rect x="38.5" y="1.5" width="13" height="9" rx="2.6" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="40" y="3" width="10" height="6" rx="1.4"/><rect x="52.3" y="4.3" width="1.4" height="3.4" rx=".7" fill-opacity=".45"/></g></svg>
+          </div>
+          <img src="assets/app/hero-home.jpg" width="780" height="1688" alt="The WONDA app on a phone, showing nearby secure dog fields with prices and safety ratings">
+        </div>
+      </div>
+    </div>
 
     <div class="app-notify">
       <p>On iPhone? The WONDA app is coming to the App Store. Leave your email and we'll tell you the moment it lands. Until then you can <a class="text" href="https://wonda.expo.app">use WONDA in your browser</a>.</p>
