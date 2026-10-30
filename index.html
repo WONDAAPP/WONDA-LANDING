@@ -5,7 +5,7 @@
 <title>WONDA | Book Secure Dog Fields by the Hour in Devon &amp; Cornwall</title>
 <link rel="canonical" href="https://wonda.dog/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Book private, securely fenced dog fields by the hour with WONDA. On Google Play now, with fields joining across Devon and Cornwall. Free for field owners to list.">
+<meta name="description" content="WONDA is the app for booking private, securely fenced dog fields by the hour. Download it on Google Play now, iPhone coming soon. Field owners run their field from the same app, free to list.">
 <meta name="theme-color" content="#1B4332">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WONDA">
@@ -401,6 +401,12 @@
   .card h3{font-size:16px;font-weight:700;margin:0 0 8px;}
   .card p{font-size:14.5px;line-height:1.58;color:var(--ink-muted);margin:0;}
 
+  /* ---- Everything on your phone ---- */
+  section.pocket{padding-block:0 64px;}
+  .pocket-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+  .pocket-list li{position:relative;padding-left:24px;font-size:14.5px;line-height:1.55;color:var(--ink-muted);}
+  .pocket-list li::before{content:"";position:absolute;left:2px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--gold);}
+
   /* ---- Trust strip ---- */
   section.trust{
     background:var(--surface);
@@ -430,7 +436,7 @@
     color:var(--accent);
     margin-bottom:10px;
   }
-  .appshow h2{
+  .appshow h2, .pocket h2{
     font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-0.015em;
     margin:0 0 10px;text-wrap:balance;
   }
@@ -707,22 +713,21 @@
 <header class="hero">
   <div class="wrap">
     <img class="hero-logo" src="assets/logo-208.png" width="104" height="104" alt="WONDA logo">
-    <span class="pill"><span class="dot"></span> Now taking field listings across Devon &amp; Cornwall</span>
+    <span class="pill"><span class="dot"></span> The dog field app &middot; Android now, iPhone coming soon</span>
     <h1 class="headline">Find your dog's<br><em>perfect field</em></h1>
     <p class="lede">
-      WONDA connects dog owners with private, securely fenced dog fields —
-      book by the hour, no surprises. Just your dog, off the lead.
+      WONDA is an app for your phone. Find a private, securely fenced dog field
+      nearby, book a slot and pay in a few taps. Just your dog, off the lead.
     </p>
 
     <div class="cta-row">
       <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=dog.wonda.app">Get it on Google Play</a>
-      <a class="btn btn-ghost" href="https://wonda.expo.app/host/apply">List your field</a>
-      <a class="btn btn-ghost" href="https://wonda.expo.app">Open the web app</a>
+      <a class="btn btn-ghost" href="#host">Run a dog field?</a>
     </div>
     <a class="hero-peek" href="#app">See it in action <span aria-hidden="true">&darr;</span></a>
 
     <div class="app-notify">
-      <p>On iPhone? WONDA for iOS is coming to the App Store — leave your email and we'll tell you the moment it lands.</p>
+      <p>On iPhone? The WONDA app is coming to the App Store. Leave your email and we'll tell you the moment it lands. Until then you can <a class="text" href="https://wonda.expo.app">use WONDA in your browser</a>.</p>
       <form class="notify-form" id="notifyForm" novalidate>
         <input
           type="email"
@@ -767,6 +772,38 @@
   </div>
 </section>
 
+<section class="pocket">
+  <div class="wrap">
+    <div class="appshow-head reveal">
+      <span class="appshow-eyebrow">A dedicated app, not a booking website</span>
+      <h2>Everything on your phone</h2>
+      <p>WONDA lives on your home screen, not in a browser tab. Dog owners book in a few taps; field owners see how their field is doing wherever they are.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="icon">&#9673;</div>
+        <h3>For dog owners</h3>
+        <ul class="pocket-list">
+          <li>Find fields near you on the map and book a slot in a few taps</li>
+          <li>Pay in the app, with the full price shown before you confirm</li>
+          <li>Your bookings and favourite fields kept in one place, ready to rebook</li>
+          <li>At the gate without a booking? Type the field's code and book on the spot</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="icon">&#9638;</div>
+        <h3>For field owners</h3>
+        <ul class="pocket-list">
+          <li>Your upcoming bookings, at a glance, wherever you are</li>
+          <li>What you've earned this month and all time</li>
+          <li>Your rating and safety rating as customers see them</li>
+          <li>Change your prices, session lengths and opening hours from your phone</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="trust">
   <div class="wrap">
     <div class="trust-row">
@@ -783,7 +820,7 @@
     <div class="appshow-head reveal">
       <span class="appshow-eyebrow">A look inside</span>
       <h2>See WONDA in action</h2>
-      <p>Real screens from the app — find a field near you, book it in seconds, or list your own.</p>
+      <p>Real screens from the WONDA app: find a field near you, book it in seconds, or list your own.</p>
     </div>
     <div class="phone-grid">
       <div class="phone reveal">
@@ -810,8 +847,8 @@
                  autoplay muted loop playsinline preload="metadata"
                  aria-label="WONDA app listing form for field owners: hours, fencing and safety details"></video>
         </div>
-        <h3>List your field &amp; earn</h3>
-        <p>Set your hours, fencing details and price — free to list, always.</p>
+        <h3>List your field in the app</h3>
+        <p>Set your hours, fencing details and prices. Free to list, always.</p>
       </div>
     </div>
     <div class="appshow-cta reveal">
@@ -827,7 +864,7 @@
       <div class="host-top">
         <span class="host-eyebrow">For dog field owners</span>
         <h2>Already run a dog field? Run it on WONDA.</h2>
-        <p>You've got the field, the fencing and the regulars. WONDA takes the bookings, the payments and the reminders off your hands, and if you're on another booking system now, we move you across for free.</p>
+        <p>You've got the field, the fencing and the regulars. WONDA takes the bookings, the payments and the reminders off your hands, and puts your field in an app on your phone. If you're on another booking system now, we move you across for free.</p>
       </div>
 
       <div class="steps">
